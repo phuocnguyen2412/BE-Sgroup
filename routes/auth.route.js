@@ -22,7 +22,7 @@ authRouter.post("/login", async function (req, res) {
             return res.status(400).json({ message: "Invali password" });
         }
 
-        const token = jwt.sign({ userId: user._id }, JWT_SECRET, {
+        const token = jwt.sign({ user }, JWT_SECRET, {
             expiresIn: "1h",
         });
         res.status(200).json({ token });
