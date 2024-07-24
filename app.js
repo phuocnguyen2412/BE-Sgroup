@@ -12,6 +12,6 @@ app.get("/", function (req, res) {
 
 app.use("/api/v1", router);
 
-app.listen(1000, function () {
-    console.log("Example app listening on port 1000!");
+app.listen(3000, function () {
+    console.log("Example app listening on port 3000!");
 });
