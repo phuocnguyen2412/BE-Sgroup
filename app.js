@@ -7,7 +7,7 @@ require("dotenv").config();
 app.use(express.json());
 
 app.get("/", function (req, res) {
-    res.send("Hello World anh Khánh ");
+    res.send("Hello World anh Khánh 123123 ");
 });
 
 app.use("/api/v1", router);
