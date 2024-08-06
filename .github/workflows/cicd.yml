@@ -40,6 +40,6 @@ jobs:
 
                   docker stop pbl3-container || true
                   docker rm pbl3-container || true 
-                  echo "DATABASE_URL=your_database_url" > .env
-                  echo "API_KEY=your_api_key" >> .env
+                  echo "MONGODB_URL=mongodb+srv://nguyen123:Oogz3ZAnJrH6WwWY@cluster0.htijt0q.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0" > .env
+                  echo "JWT_SECRET=12123123123123abdbdbd" >> .env
                   docker run -d -p 80:3000 --name pbl3-container --env-file .env ${{ secrets.DOCKERHUB_USERNAME }}/pbl3-image:${{ github.sha }}
