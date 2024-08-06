@@ -39,7 +39,7 @@ jobs:
                   eval $(ssh-agent -s)
                   ssh-add /tmp/id_rsa
                   ssh -i /tmp/id_rsa -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}
-                  cd ..
+                  
                   ls
                   echo "MONGODB_URL=mongodb+srv://nguyen123:Oogz3ZAnJrH6WwWY@cluster0.htijt0q.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0" > .env
                   echo "JWT_SECRET=12123123123123abdbdbd" > .env
