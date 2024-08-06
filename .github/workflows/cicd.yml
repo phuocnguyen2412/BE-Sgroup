@@ -42,6 +42,5 @@ jobs:
         
                   docker pull ${{ secrets.DOCKERHUB_USERNAME }}/be-sgroup:${{ github.sha }}
 
-                  docker stop pbl3-container || true
-                  docker rm pbl3-container || true 
+        
                   docker run -d -p 3000:3000 --name be-sgroup-container ${{ secrets.DOCKERHUB_USERNAME }}/be-sgroup:${{ github.sha }}
