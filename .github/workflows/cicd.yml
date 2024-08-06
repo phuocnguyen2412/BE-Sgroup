@@ -47,3 +47,4 @@ jobs:
                   docker images
         
                   docker run -d -p 3000:3000 --env-file .env --name be-sgroup-container ${{ secrets.DOCKERHUB_USERNAME }}/be-sgroup:${{ github.sha }}
+                  docker logs be-sgroup-container
