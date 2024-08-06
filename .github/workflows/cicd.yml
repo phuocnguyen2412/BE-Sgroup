@@ -34,17 +34,18 @@ jobs:
         steps:
             - name: Checkout code
               uses: actions/checkout@v2
-
-            - name: Deploy to the server
+            - name: Access to the server
               run: |
                   echo "${{ secrets.SSH_PRIVATE_KEY }}" > /tmp/id_rsa
                   chmod 600 /tmp/id_rsa
                   eval $(ssh-agent -s)
                   ssh-add /tmp/id_rsa
+            - name: Deploy to the server
+              run: |
                   ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << "EOF"
                       cd /path/to/your/project
-                      echo "MONGODB_URL=mongodb+srv://nguyen123:Oogz3ZAnJrH6WwWY@cluster0.htijt0q.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0" > .env
-                      echo "JWT_SECRET=12123123123123abdbdbd" >> .env
+                      echo "${{ secrets.MONGODB_URL }}" > .env
+                      echo "${{ secrets.JWT_SECRET }}" >> .env
                       docker pull ${{ secrets.DOCKERHUB_USERNAME }}/be-sgroup:${{ github.sha }}
                       docker stop be-sgroup-container || true
                       docker rm be-sgroup-container || true
