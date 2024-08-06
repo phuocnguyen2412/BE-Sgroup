@@ -49,6 +49,5 @@ jobs:
                       docker stop be-sgroup-container || true
                       docker rm be-sgroup-container || true
                       docker run -d -p 3000:3000 --env-file .env --name be-sgroup-container ${{ secrets.DOCKERHUB_USERNAME }}/be-sgroup:${{ github.sha }}
-                      docker system prune -f
-                      
-                   EOF
+                      docker system prune -f                 
+                  EOF
