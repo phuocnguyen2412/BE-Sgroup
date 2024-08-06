@@ -9,6 +9,6 @@ RUN apk add --no-cache zsh \
 
 COPY ./src ./src
 COPY ./app.js ./
-COPY ./.env ./
+
 
 CMD [ "npm", "start" ]
