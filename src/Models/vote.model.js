@@ -1,4 +1,4 @@
-var db = require("../configs/mongodb");
+var db = require("../../src/configs/mongodb");
 const { OptionSchema } = require("./option.model");
 
 var Vote = db.model("Vote", {

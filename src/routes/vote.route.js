@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-var Vote = require("../Models/vote.model");
+var Vote = require("../Models/vote.model")
 var auth = require("../middleware/auth.middleware");
 // User get vote information
 router.get("/:voteId", async function (req, res) {

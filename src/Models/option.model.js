@@ -1,4 +1,4 @@
-var db = require("../configs/mongodb");
+var db = require("../../src/configs/mongodb");
 var OptionSchema = db.Schema({
     title: {
         type: String,
