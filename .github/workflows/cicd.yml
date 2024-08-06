@@ -34,7 +34,7 @@ jobs:
         steps:
             - name: Checkout code
               uses: actions/checkout@v2
-            
+
             - name: Deploy to the server
               run: |
                   echo "${{ secrets.SSH_PRIVATE_KEY }}" > /tmp/id_rsa
@@ -42,7 +42,6 @@ jobs:
                   eval $(ssh-agent -s)
                   ssh-add /tmp/id_rsa
                   ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << "EOF"
-                      cd /path/to/your/project
                       echo "${{ secrets.MONGODB_URL }}" > .env
                       echo "${{ secrets.JWT_SECRET }}" >> .env
                       docker pull ${{ secrets.DOCKERHUB_USERNAME }}/be-sgroup:${{ github.sha }}
