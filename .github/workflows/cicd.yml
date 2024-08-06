@@ -41,7 +41,7 @@ jobs:
                   chmod 600 /tmp/id_rsa
                   eval $(ssh-agent -s)
                   ssh-add /tmp/id_rsa
-                  ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
+                  ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << "EOF"
                       cd /path/to/your/project
                       echo "MONGODB_URL=mongodb+srv://nguyen123:Oogz3ZAnJrH6WwWY@cluster0.htijt0q.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0" > .env
                       echo "JWT_SECRET=12123123123123abdbdbd" >> .env
@@ -49,6 +49,6 @@ jobs:
                       docker stop be-sgroup-container || true
                       docker rm be-sgroup-container || true
                       docker run -d -p 3000:3000 --env-file .env --name be-sgroup-container ${{ secrets.DOCKERHUB_USERNAME }}/be-sgroup:${{ github.sha }}
-                 
-                      docker logs be-sgroup-container
+                      docker system prune -f
+                      
                    EOF
