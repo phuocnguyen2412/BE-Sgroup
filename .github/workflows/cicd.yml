@@ -45,7 +45,7 @@ jobs:
                   echo "JWT_SECRET=12123123123123abdbdbd" > .env
                   docker pull ${{ secrets.DOCKERHUB_USERNAME }}/be-sgroup:${{ github.sha }}
                   docker images
-        
+                  ip a
                   docker run -d -p 3000:3000 --env-file .env --name be-sgroup-container ${{ secrets.DOCKERHUB_USERNAME }}/be-sgroup:${{ github.sha }}
                   docker ps 
                   docker logs -f be-sgroup-container
