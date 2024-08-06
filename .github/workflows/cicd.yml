@@ -34,14 +34,13 @@ jobs:
         steps:
             - name: Checkout code
               uses: actions/checkout@v2
-            - name: Access to the server
+            
+            - name: Deploy to the server
               run: |
                   echo "${{ secrets.SSH_PRIVATE_KEY }}" > /tmp/id_rsa
                   chmod 600 /tmp/id_rsa
                   eval $(ssh-agent -s)
                   ssh-add /tmp/id_rsa
-            - name: Deploy to the server
-              run: |
                   ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << "EOF"
                       cd /path/to/your/project
                       echo "${{ secrets.MONGODB_URL }}" > .env
