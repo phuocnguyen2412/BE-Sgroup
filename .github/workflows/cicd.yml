@@ -34,7 +34,7 @@ jobs:
             - name: Deploy to the server
               run: |
                 
-                 echo "${{ secrets.SSH_PRIVATE_KEY }}" > /tmp/id_rsa
+                  echo "${{ secrets.SSH_PRIVATE_KEY }}" > /tmp/id_rsa
                   chmod 600 /tmp/id_rsa
                   eval $(ssh-agent -s)
                   ssh-add /tmp/id_rsa
@@ -44,6 +44,6 @@ jobs:
                   echo "MONGODB_URL=mongodb+srv://nguyen123:Oogz3ZAnJrH6WwWY@cluster0.htijt0q.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0" > .env
                   echo "JWT_SECRET=12123123123123abdbdbd" > .env
                   docker pull ${{ secrets.DOCKERHUB_USERNAME }}/be-sgroup:${{ github.sha }}
-                docker images
+                  docker images
         
                   docker run -d -p 3000:3000 --env-file .env --name be-sgroup-container ${{ secrets.DOCKERHUB_USERNAME }}/be-sgroup:${{ github.sha }}
