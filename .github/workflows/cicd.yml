@@ -36,6 +36,8 @@ jobs:
                   
                   echo "${{ secrets.SSH_PRIVATE_KEY }}" > /tmp/id_rsa
                   chmod 600 /tmp/id_rsa
+                  eval $(ssh-agent -s)
+                  ssh-add /tmp/id_rsa
                   ssh -i /tmp/id_rsa -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}
                   docker pull ${{ secrets.DOCKERHUB_USERNAME }}/pbl3-image:${{ github.sha }}
 
