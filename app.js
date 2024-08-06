@@ -7,11 +7,11 @@ require("dotenv").config();
 app.use(express.json());
 
 app.get("/", function (req, res) {
-    res.send("Hello World!");
+    res.send("Hello World anh Khánh ");
 });
 
 app.use("/api/v1", router);
 
-app.listen(3001, function () {
+app.listen(3000, function () {
     console.log("Example app listening on port 3000!");
 });
