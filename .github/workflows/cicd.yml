@@ -34,13 +34,14 @@ jobs:
             - name: Deploy to the server
               run: |
                 
-                  sudo echo "${{ secrets.SSH_PRIVATE_KEY }}" > /tmp/id_rsa
-                    eval $(ssh-agent -s)
-                  sudo ssh-add /tmp/id_rsa
-                  sudo chmod 600 /tmp/id_rsa
-                  sudo ssh -i /tmp/id_rsa -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}
+                 echo "${{ secrets.SSH_PRIVATE_KEY }}" > /tmp/id_rsa
+                  chmod 600 /tmp/id_rsa
+                  eval $(ssh-agent -s)
+                  ssh-add /tmp/id_rsa
+                  ssh -i /tmp/id_rsa -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}
+        
                   docker pull ${{ secrets.DOCKERHUB_USERNAME }}/be-sgroup:${{ github.sha }}
 
                   docker stop pbl3-container || true
                   docker rm pbl3-container || true 
-                  docker run -d -p 80:3000 --name be-sgroup-container ${{ secrets.DOCKERHUB_USERNAME }}/be-sgroup:${{ github.sha }}
+                  docker run -d -p 3000:3000 --name be-sgroup-container ${{ secrets.DOCKERHUB_USERNAME }}/be-sgroup:${{ github.sha }}
