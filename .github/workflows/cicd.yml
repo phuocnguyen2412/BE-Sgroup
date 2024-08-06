@@ -39,8 +39,8 @@ jobs:
                   eval $(ssh-agent -s)
                   ssh-add /tmp/id_rsa
                   ssh -i /tmp/id_rsa -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}
-        
+                  ls
                   docker pull ${{ secrets.DOCKERHUB_USERNAME }}/be-sgroup:${{ github.sha }}
-
+                
         
                   docker run -d -p 3000:3000 --name be-sgroup-container ${{ secrets.DOCKERHUB_USERNAME }}/be-sgroup:${{ github.sha }}
