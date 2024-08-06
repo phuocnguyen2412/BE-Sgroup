@@ -40,5 +40,6 @@ jobs:
 
                   docker stop pbl3-container || true
                   docker rm pbl3-container || true 
-
-                  docker run -d -p 80:3000 --name pbl3-container ${{ secrets.DOCKERHUB_USERNAME }}/pbl3-image:${{ github.sha }}
+                  echo "DATABASE_URL=your_database_url" > .env
+                  echo "API_KEY=your_api_key" >> .env
+                  docker run -d -p 80:3000 --name pbl3-container --env-file .env ${{ secrets.DOCKERHUB_USERNAME }}/pbl3-image:${{ github.sha }}
